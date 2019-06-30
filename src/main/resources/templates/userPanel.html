@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal aukcyjny</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css\main.css" type="text/css" />
+    <div th:replace="header :: header-css"/>
+</head>
+<body>
+
+<div th:replace="header :: header"/>
+
+<p class="h2 text-center">Konto użytkownika</p>
+
+<div class="container ">
+    <form th:action="@{/saveUserPanel}" th:object="${user}" method="post">
+
+        <p class="error" th:text="${commonError}"></p>
+        <div class="form-group">
+            <div class="error" th:errors="*{username}"></div>
+            <label for="username">Email address</label>
+            <input type="text" class="form-control" id="username" th:field="*{username}" aria-describedby="emailHelp"
+                   placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Your unique account login.</small>
+        </div>
+        <div class="form-group">
+            <div class="error" th:errors="*{password}"></div>
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" th:field="*{password}" placeholder="Password"
+                   aria-describedby="pass1">
+            <small id="pass1" class="form-text text-muted">Your unique account login.</small>
+        </div>
+        <div class="form-group">
+            <div class="error" th:errors="*{confirmedPassword}"></div>
+            <label for="confirmedPassword">Confirmed password</label>
+            <input type="password" class="form-control" id="confirmedPassword" th:field="*{confirmedPassword}"
+                   placeholder="Confirmed password">
+        </div>
+        <div class="form-group">
+            <div class="error" th:errors="*{city}"></div>
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" th:field="*{city}"
+                   placeholder="City">
+        </div>
+        <div class="form-group">
+            <div class="error" th:errors="*{address}"></div>
+            <label for="address">Address</label>
+            <input type="text" class="form-control" id="address" th:field="*{address}"
+                   placeholder="Address">
+        </div>
+        <div class="form-group">
+            <input type="button" value="Powrót" name="backButton"
+                   onClick="javascript:window.location.href='/login'" class="myButton shortButton" >
+            <input class = "mySubmitButton" type="submit" value="Zapisz" name="saveButton">
+        </div>
+    </form>
+</div>
+</body>
+</html>

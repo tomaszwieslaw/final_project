@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Portal aukcyjny</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css\main.css" type="text/css" />
+    <div th:replace="header :: header-css"/>
+</head>
+
+<body>
+<div th:replace="header :: header"/>
+<div class="wrapper">
+
+    <div id="formContent">
+        <div class="registrationTitle" >Rejestracja</div>
+
+        <form th:action="@{/register}" th:object="${user}" method="post">
+
+            <p class="error" th:text="${commonError}"></p>
+            <input id="username" type="text" th:field="*{username}" class="myTextButton" placeholder="email"/>
+            <div class="error" th:errors="*{username}"></div>
+            <input id="password" type="password" th:field="*{password}" class="myPasswordButton"
+                   placeholder="password"/>
+            <div class="error" th:errors="*{password}"></div>
+            <input id="confirmedPassword" type="password" th:field="*{confirmedPassword}" class="myTextButton third"
+                   placeholder="confirm password"/>
+            <div>
+                <input id="city" type="text" th:field="*{city}" class="myTextButton" placeholder="city"/>
+                <div class="error" th:errors="*{city}"></div>
+                <input id="address" type="text" th:field="*{address}" class="myTextButton" placeholder="address"/>
+                <div class="error" th:errors="*{address}"></div>
+                <input type="button" value="Powrót" name="backButton"
+                       onClick="javascript:window.location.href='/login'" class="myButton shortButton" >
+                <input type="submit" value="Zapisz" name="saveButton" class="mySubmitButton">
+            </div>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
